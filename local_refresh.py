@@ -11,7 +11,7 @@ from web_classes.soliscloud_local import LocalSession
 import time
 
 if __name__ == "__main__":
-    with open("config_local.json") as f:
+    with open("config.json") as f:
         config = json.load(f)
 
     # Initial setup and login to soliscloud.com

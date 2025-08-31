@@ -6,3 +6,4 @@ config_*.json
 .venv
 .gitignore
 HOWTO
+/runscript.sh
