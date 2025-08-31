@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.DEBUG)
 async def main():
     """Run main function."""
     # Put your own key and secret in the config.json file
-    with open('config.json', 'r') as file:
+    with open('config_local.json', 'r') as file:
         data = json.load(file)
 
     api_key = data['key']

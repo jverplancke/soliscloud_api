@@ -3,3 +3,6 @@ test/__pycache__/*
 dist/*
 .vscode/settings.json
 config_*.json
+.venv
+.gitignore
+HOWTO

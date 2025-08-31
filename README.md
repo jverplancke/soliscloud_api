@@ -65,4 +65,11 @@ NOTE: The spec uses the terms Plant, Station and Power Station interchangeably. 
 
 1. If the local time deviates more than 15 minutes from SolisCloud server time then the server will respond with HTTP 408.
 2. When calls to the API return with error message "数据异常 请联系管理员" (English: abnormal data, please contact administrator.), then SolisCloud helpdesk needs to fix your account, raise a ticket via soliscloud.com
-3. I could not test the use of the NMI parameter for AUS use cases, please create a ticket or pull request if you experience issues
+3. I could not test the use of the NMI parameter for AUS use cases, please create a ticket or pull request (@ https://github.com/hultenvp/soliscloud_api) if you experience issues.
+
+# Fast refresh
+If you have an S3-WIFI-ST (S3-GRPS-ST may also work), you can force an update of the datalogger for a limited number of items*. The datalogger will push these to the web API as well as to a local status page (http://[datalogger-address]/inverter.cgi) with less latency. local_refresh.py provides an example on how to access this data, rather than having to wait for the 5 minute polling interval. This bypasses the need for extra hardware, until Solis catches on at least.
+
+If anyone can intercept the actual command being sent over IP from Solis' servers to the datalogger, perhaps a fully local version of this can be written (again without the need for extra hardware).
+
+*: these are: serial number, firmware version, inverter model, inverter temperature, current power, yield today, total yield, alerts flag.

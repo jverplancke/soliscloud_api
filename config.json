@@ -1,5 +1,9 @@
 {
     "key" : "put your key here",
     "secret" : "put your secret here",
-    "nmi" : "only required in AUS" 
+    "nmi" : "only required in AUS",
+    "email": "your email address for soliscloud.com",
+    "password": "your plaintext password",
+    "datalogger_IP": "your datalogger's local IP address",
+    "datalogger_password": "Your datalogger's password. After connecting to your local network, this will be the same as your wi-fi password."
 }
