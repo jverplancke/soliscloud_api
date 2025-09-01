@@ -8,10 +8,10 @@ import asyncio  # for original soliscloud_api
 import json
 from web_classes.soliscloud_global import SoliscloudWebSession
 from web_classes.soliscloud_local import LocalSession
-import os, time
+import time
+import os
 
 if __name__ == "__main__":
-    # if invoked from a shell or other script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(script_dir, "config.json")) as f:
         config = json.load(f)
@@ -28,8 +28,11 @@ if __name__ == "__main__":
 
     # Give inverter some time to update and output latest power
     time.sleep(1)
-    local_session = LocalSession(config, autorefresh=True) # refresh on every get_val call
-    local_session.refresh()
-    #print("Generated power: {} W".format(local_session.get_val("current_power")))
-    json.dumps(local_session.latest, indent=4)
-
+    try:
+        local_session = LocalSession(config, autorefresh=True)  # refresh on every call
+        local_session.refresh()
+        #print("Generated power: {} W".format(local_session.get_val("current_power")))
+        #print(local_session.get_val("current_power"))
+        json.dumps(local_session.latest, indent=4)
+    except:
+        print("Data polling failed, likely the datalogger is offline")
