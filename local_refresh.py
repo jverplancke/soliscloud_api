@@ -28,6 +28,8 @@ if __name__ == "__main__":
 
     # Give inverter some time to update and output latest power
     time.sleep(1)
-    local_session = LocalSession(config, autorefresh=True)  # refresh on every call
+    local_session = LocalSession(config, autorefresh=True) # refresh on every get_val call
+    local_session.refresh()
     #print("Generated power: {} W".format(local_session.get_val("current_power")))
-    print(local_session.get_val("current_power"))
+    json.dumps(local_session.latest, indent=4)
+

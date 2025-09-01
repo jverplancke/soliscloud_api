@@ -8,14 +8,27 @@ class LocalSession:
         self.address = config["datalogger_IP"]
         self.cgi_url = "http://" + self.address + "/inverter.cgi"
         self.autorefresh = autorefresh
-        self.latest = {}
+        self.latest = dict.fromkeys(
+            ["serial_no",
+             "firmware_version",
+             "inverter_model",
+             "inverter_temperature",
+             "current_power",
+             "yield_today",
+             "total_yield",
+             "alerts",
+             "success"],
+        0)
+        self.latest["success"] = False
 
     def refresh(self):
         response = requests.get(
             self.cgi_url,
             auth=requests.auth.HTTPBasicAuth(self.username, self.password),
+            timeout=5
         )
         if response.status_code == 200:
+            self.latest["success"] = True
             response_text = unicodedata.normalize('NFKD', response.text)
             vals = response_text.encode('ascii', 'ignore').decode('ascii').split(";")
             keys = ["serial_no",
