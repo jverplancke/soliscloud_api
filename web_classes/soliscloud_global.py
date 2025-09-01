@@ -93,7 +93,7 @@ class SoliscloudWebSession:
             self.session_token = response_data.get("data", {}).get("token")
             self.login_cookies = login_session.cookies.get_dict()
 
-            print("Logged in to SolisCloud...")
+            #print("Logged in to SolisCloud...")
 
         except requests.exceptions.RequestException as e:
             print(f"Login request failed! Error: {e}")
@@ -196,7 +196,7 @@ class SoliscloudWebSession:
         try:
             response = requests.post(api_url, headers=api_headers, data=body_bytes, cookies=self.login_cookies)
             response.raise_for_status()
-            print("API call successful.")
+            #print("API call successful.")
             return response.json()
         except requests.exceptions.RequestException as e:
             print(f"API call failed, error: {e}")
