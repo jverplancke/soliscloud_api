@@ -222,11 +222,13 @@ class SoliscloudWebSession:
 
         signature = hmac.new(secret_key, string_to_sign.encode('utf-8'), hashlib.sha1).digest()
         encoded_signature = base64.b64encode(signature).decode('utf-8')
-        auth_header = (f"{keys["projectType"]}"
-                       f"{keys["encryptedSymbolSpace"]}"
-                       f"{key_id}"
-                       f"{keys["encryptedSymbol"]}"
-                       f"{encoded_signature}")
+        auth_header = "{}{}{}{}{}".format(
+            keys["projectType"],
+            keys["encryptedSymbolSpace"],
+            key_id,
+            keys["encryptedSymbol"],
+            encoded_signature
+        )
 
         return {
             'Authorization': auth_header,

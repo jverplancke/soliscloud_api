@@ -8,10 +8,12 @@ import asyncio  # for original soliscloud_api
 import json
 from web_classes.soliscloud_global import SoliscloudWebSession
 from web_classes.soliscloud_local import LocalSession
-import time
+import os, time
 
 if __name__ == "__main__":
-    with open("config.json") as f:
+    # if invoked from a shell or other script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(script_dir, "config.json")) as f:
         config = json.load(f)
 
     # Initial setup and login to soliscloud.com
@@ -27,4 +29,5 @@ if __name__ == "__main__":
     # Give inverter some time to update and output latest power
     time.sleep(1)
     local_session = LocalSession(config, autorefresh=True)  # refresh on every call
-    print("Generated power: {} W".format(local_session.get_val("current_power")))
+    #print("Generated power: {} W".format(local_session.get_val("current_power")))
+    print(local_session.get_val("current_power"))
