@@ -33,6 +33,6 @@ if __name__ == "__main__":
         local_session.refresh()
         #print("Generated power: {} W".format(local_session.get_val("current_power")))
         #print(local_session.get_val("current_power"))
-        json.dumps(local_session.latest, indent=4)
+        print(json.dumps(local_session.latest, indent=4))
     except:
         print("Data polling failed, likely the datalogger is offline")
