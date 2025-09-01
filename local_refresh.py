@@ -6,6 +6,9 @@ inverter temperature, current power, yield today, total yield, alerts flag].
 
 import asyncio  # for original soliscloud_api
 import json
+
+from requests import ConnectTimeout
+
 from web_classes.soliscloud_global import SoliscloudWebSession
 from web_classes.soliscloud_local import LocalSession
 import time
@@ -34,5 +37,5 @@ if __name__ == "__main__":
         #print("Generated power: {} W".format(local_session.get_val("current_power")))
         #print(local_session.get_val("current_power"))
         print(json.dumps(local_session.latest, indent=4))
-    except:
-        print("Data polling failed, likely the datalogger is offline")
+    except ConnectTimeout:
+        print("Data polling failed, datalogger offline")
